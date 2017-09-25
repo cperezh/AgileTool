@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container-fluid">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nombre</th>
+					<th>Tarea</th>
+					<th>Performance</th>
+					<th>Horas tarea</th>
+					<th>Fecha inicio</th>
+					<th>Pendiente planificado</th>
+					<th>Pendiente actual</th>
+					<th>Desviacion</th>
+					<th>Fecha fin planificada</th>
+					<th>Fecha fin actual</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="tarea in tareas">
+					<th scope="row">{{$index+1}}</th>
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.nombre"></td>
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.tarea"></td>
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.performance"></td>		
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.horas"></td>
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.fechaInicio"></td>
+					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.pendientePlanificado"></td>
+					<td>@mdo</td>
+					<td>@mdo</td>
+					<td>@mdo</td>
+					<td>@mdo</td>
+				</tr>
+			</tbody>
+		</table>
+		<button type="button" class="btn btn-primary">Añadir Tarea</button>
+	</div>
+</body>
+</html>
