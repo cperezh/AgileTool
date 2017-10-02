@@ -20,4 +20,8 @@ public class DAOTarea {
 
 	}
 	
+	public void modificarTarea(Tarea tarea) {
+		entityManager.merge(tarea);
+	}
+	
 }

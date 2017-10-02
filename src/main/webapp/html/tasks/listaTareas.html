@@ -1,44 +1,52 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<div class="container-fluid">
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>#</th>
-					<th>Nombre</th>
-					<th>Tarea</th>
-					<th>Performance</th>
-					<th>Horas tarea</th>
-					<th>Fecha inicio</th>
-					<th>Pendiente planificado</th>
-					<th>Pendiente actual</th>
-					<th>Desviacion</th>
-					<th>Fecha fin planificada</th>
-					<th>Fecha fin actual</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="tarea in tareas">
-					<th scope="row">{{tarea.id}}</th>
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.nombre_persona"></td>
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.nombre_tarea"></td>
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.performance"></td>		
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.horas"></td>
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.fechaInicio"></td>
-					<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.pendientePlanificado"></td>
-					<td>@mdo</td>
-					<td>@mdo</td>
-					<td>@mdo</td>
-					<td>@mdo</td>
-				</tr>
-			</tbody>
-		</table>
-		<button type="button" class="btn btn-primary">Añadir Tarea</button>
-	</div>
-</body>
-</html>
+
+<div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Nombre</th>
+				<th>Tarea</th>
+				<th>%Perf.</th>
+				<th>Horas tarea</th>
+				<th>F. Inicio</th>
+				<th>PV</th>
+				<th>EV</th>
+				<th>SV</th>
+				<th>F. Fin PV</th>
+				<th>F. Fin EV</th>
+				<th>Days-off</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="tarea in tareas">
+				<th scope="row">{{tarea.id}}</th>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.nombre_persona"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.nombre_tarea"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.performance"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.horas_tarea"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.fec_inicio"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.pendientePlanificado"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.pendiente_actual"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.desviacion"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.fec_fin_planificada"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.fec_fin_actual"></td>
+				<td><input type="text" class="form-control"
+					placeholder="Performance" ng-model="tarea.dias_off"></td>
+			</tr>
+		</tbody>
+	</table>
+	<button type="button" class="btn btn-primary">A&ntilde;adir
+		Tarea</button>
+	<button type="button" class="btn btn-primary"
+		ng-click="modificarTareas()">Modificar Tareas</button>
+</div>
