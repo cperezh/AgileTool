@@ -1,7 +1,6 @@
 package carlos.agiletool.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.persistence.Entity;
@@ -28,12 +27,18 @@ public class Tarea implements Serializable {
 	private Double pendiente_planificado;
 	private Double pendiente_actual;
 	private Double desviacion;
-	private Date fec_fin_planificada;
-	private Date fec_fin_actual;
+	@Temporal(TemporalType.DATE)
+	private Calendar fec_fin_planificada;
+	@Temporal(TemporalType.DATE)
+	private Calendar fec_fin_actual;
 	private Double dias_off;
 
 	public Tarea() {
 
+	}
+	
+	public void calcularPV() {
+		this.setPendiente_planificado(new Double(6.0));
 	}
 
 	public Integer getId() {
@@ -92,12 +97,12 @@ public class Tarea implements Serializable {
 		this.pendiente_planificado = pendiente_planificado;
 	}
 
-	public Double getPebdiente_actual() {
+	public Double getPendiente_actual() {
 		return pendiente_actual;
 	}
 
-	public void setPebdiente_actual(Double pebdiente_actual) {
-		this.pendiente_actual = pebdiente_actual;
+	public void setPendiente_actual(Double pendiente_actual) {
+		this.pendiente_actual = pendiente_actual;
 	}
 
 	public Double getDesviacion() {
@@ -108,19 +113,19 @@ public class Tarea implements Serializable {
 		this.desviacion = desviacion;
 	}
 
-	public Date getFec_fin_planificada() {
+	public Calendar getFec_fin_planificada() {
 		return fec_fin_planificada;
 	}
 
-	public void setFec_fin_planificada(Date fec_fin_planificada) {
+	public void setFec_fin_planificada(Calendar fec_fin_planificada) {
 		this.fec_fin_planificada = fec_fin_planificada;
 	}
 
-	public Date getFec_fin_actual() {
+	public Calendar getFec_fin_actual() {
 		return fec_fin_actual;
 	}
 
-	public void setFec_fin_actual(Date fec_fin_actual) {
+	public void setFec_fin_actual(Calendar fec_fin_actual) {
 		this.fec_fin_actual = fec_fin_actual;
 	}
 

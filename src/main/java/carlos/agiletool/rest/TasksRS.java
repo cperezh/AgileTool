@@ -31,9 +31,15 @@ public class TasksRS {
 	}
 	
 	@PUT
-	public void modificarTareas(List<Tarea> tareas) {
+	public List<Tarea> modificarTareas(List<Tarea> tareas) {
+		
 		for (Tarea tarea:tareas) {
+			
+			tarea.calcularPV();
+			
 			daoTarea.modificarTarea(tarea);
 		}
+		
+		return tareas;
 	}
 }
