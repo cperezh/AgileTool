@@ -8,12 +8,14 @@
 	<name>AgileTool Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<!-- https://mvnrepository.com/artifact/javax/javaee-web-api -->
 		<dependency>
