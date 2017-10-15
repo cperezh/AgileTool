@@ -9,9 +9,6 @@ var TasksModule = angular.module('TasksModule', []);
 TasksModule.controller('GetAllTaskController', function($scope, $http,
 		$location, $filter) {
 
-	// $scope.tareas =
-	// [{"nombre":"carles_pujol","tarea":"SII_","performance":"1"},{"nombre":"carles","tarea":"SII_","performance":"1"}];
-
 	var url = serverURL + '/tareas';
 	var mensaje;
 
@@ -50,13 +47,13 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 
 		for (i = 0; i < tareas.length; i++) {
 			tarea = tareas[i];
-			
+
 			tarea.fec_inicio = new Date(tarea.fec_inicio);
 			tarea.fec_fin_planificada = new Date(tarea.fec_fin_planificada);
 			tarea.fec_fin_actual = new Date(tarea.fec_fin_actual);
 
 		}
-		
+
 		return tareas;
 
 	}

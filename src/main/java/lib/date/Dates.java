@@ -7,22 +7,66 @@ public class Dates {
 
 	public static int contarDíasHabilesEntreFechas(Calendar fecInicio,Calendar fecFin) {
 		
-		Calendar fechaInicioAux = (Calendar) fecInicio.clone();
-		int days = 0;
+		if (fecInicio == null || fecFin ==  null)
+			return 0;
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		System.out.println(dateFormat.format(fechaInicioAux.getTime()));
-		System.out.println(dateFormat.format(fecFin.getTime()));
+		Calendar fechaInicioAux = Dates.normalizarFechaADiaMesAnio(fecInicio);
+				
+		Calendar fechaFinAux =Dates.normalizarFechaADiaMesAnio(fecFin);
+				
+		int days = 0;		
 		
-		while (fechaInicioAux.getTimeInMillis()<fecFin.getTimeInMillis()) {
+		while (fechaInicioAux.before(fechaFinAux.clone())){
 			
-			System.out.println(dateFormat.format(fechaInicioAux.getTime()));
-			
-			days++;
-			
+			//Si no es sabado ni domingo, cuento el día
+			if (fechaInicioAux.get(Calendar.DAY_OF_WEEK)!=Calendar.SATURDAY && fechaInicioAux.get(Calendar.DAY_OF_WEEK)!=Calendar.SUNDAY) {
+				days++;
+			}
+						
 			fechaInicioAux.add(Calendar.DAY_OF_MONTH, 1);
 		}
 		
 		return days;
+	}
+	
+	public static Calendar normalizarFechaADiaMesAnio(Calendar f1) {
+		
+		Calendar faux = Calendar.getInstance();
+		
+		faux = Dates.trunc(faux);
+		
+		//Normalizo la zona horaria para poder coger la fecha, que depende de la zona horaria
+		f1.setTimeZone(faux.getTimeZone());
+		
+		faux.set(Calendar.DAY_OF_MONTH,f1.get(Calendar.DAY_OF_MONTH));
+		faux.set(Calendar.MONTH,f1.get(Calendar.MONTH));
+		faux.set(Calendar.YEAR,f1.get(Calendar.YEAR));
+		
+		return faux;
+	}
+	
+	private static Calendar trunc(Calendar date) {
+		
+		Calendar dateTrunc =(Calendar) date.clone();
+		
+		dateTrunc.clear(Calendar.HOUR_OF_DAY);
+		dateTrunc.clear(Calendar.HOUR);
+		dateTrunc.clear(Calendar.MINUTE);
+		dateTrunc.clear(Calendar.SECOND);
+		dateTrunc.clear(Calendar.MILLISECOND);
+		
+		return dateTrunc;
+	}
+	
+	public static String toString(Calendar date) {
+		
+		String fechaString;
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss-SSS"); 	
+		
+		fechaString = dateFormat.format(date.getTime());
+		
+		return fechaString;
+		
 	}
 }

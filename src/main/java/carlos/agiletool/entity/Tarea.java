@@ -10,11 +10,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lib.date.Dates;
+
 @Entity
 @NamedQueries({
 		@NamedQuery(name = "Tarea.buscarTodas", query = "SELECT t FROM Tarea t") })
 
 public class Tarea implements Serializable {
+	
+	private static final int horasDia = 8;
 
 	@Id
 	private Integer id;
@@ -38,7 +42,13 @@ public class Tarea implements Serializable {
 	}
 	
 	public void calcularPV() {
-		this.setPendiente_planificado(new Double(6.0));
+
+		int diasHabiles;
+		
+		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance());
+		
+		pendiente_planificado = horas_tarea - (performance * horasDia * diasHabiles);
+		
 	}
 
 	public Integer getId() {
