@@ -118,5 +118,53 @@ public class DatesTest {
 		assert (dias == 0);
 	}
 	
+	@Test
+	public void testContarDíasHabilesEntreFechasNulosFecInicio() {
+
+		Calendar fecInicio = null;
+		Calendar fecFin = Calendar.getInstance();
+
+		
+		fecFin.set(2016, Calendar.DECEMBER, 30);
+
+		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin);
+
+		assert (dias == 0);
+	}
+	
+	@Test
+	public void testContarDíasHabilesEntreFechasNulosFecFin() {
+
+		Calendar fecInicio = Calendar.getInstance();;
+		Calendar fecFin = null;
+
+		
+		fecInicio.set(2016, Calendar.DECEMBER, 30);
+
+		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin);
+
+		assert (dias == 0);
+	}
+	
+	@Test
+	public void calcularFechaFinLunesMas1() {
+		
+		Calendar fecInicio = Calendar.getInstance();
+		Calendar fecFinAux = Calendar.getInstance();
+		Calendar fecFin;
+		 
+		
+		fecInicio.set(2017, Calendar.OCTOBER, 17);
+		fecFinAux.set(2017, Calendar.OCTOBER, 18);
+		
+		fecFin = Dates.calcularFechaFin(fecInicio,1);
+		
+		assert(fecFin.equals(fecFinAux));
+		
+		
+		
+		
+	}
+	
 	
 }

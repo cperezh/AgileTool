@@ -35,7 +35,7 @@ public class TasksRS {
 		
 		for (Tarea tarea:tareas) {
 			
-			tarea.calcularPV();
+			tarea.recalcular();
 			
 			daoTarea.modificarTarea(tarea);
 		}

@@ -13,11 +13,10 @@ import javax.persistence.TemporalType;
 import lib.date.Dates;
 
 @Entity
-@NamedQueries({
-		@NamedQuery(name = "Tarea.buscarTodas", query = "SELECT t FROM Tarea t") })
+@NamedQueries({ @NamedQuery(name = "Tarea.buscarTodas", query = "SELECT t FROM Tarea t") })
 
 public class Tarea implements Serializable {
-	
+
 	private static final int horasDia = 8;
 
 	@Id
@@ -40,15 +39,31 @@ public class Tarea implements Serializable {
 	public Tarea() {
 
 	}
-	
-	public void calcularPV() {
+
+	public void recalcular() {
+		calcularPV();
+		calcularSV();
+	}
+
+	private void calcularPV() {
 
 		int diasHabiles;
-		
+
 		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance());
-		
+
 		pendiente_planificado = horas_tarea - (performance * horasDia * diasHabiles);
-		
+
+	}
+
+	private void calcularSV() {
+
+		if (pendiente_actual != null) {
+			desviacion = pendiente_planificado - pendiente_actual;
+
+		} else {
+			desviacion = pendiente_planificado;
+		}
+
 	}
 
 	public Integer getId() {
@@ -150,12 +165,9 @@ public class Tarea implements Serializable {
 	@Override
 	public String toString() {
 		return "Tarea [id=" + id + ", nombre_persona=" + nombre_persona + ", nombre_tarea=" + nombre_tarea + ", performance=" + performance + ", horas_tarea=" + horas_tarea + ", fec_inicio="
-				+ fec_inicio.get(Calendar.DAY_OF_MONTH)+"/"+(fec_inicio.get(Calendar.MONTH)+1)+"/"+fec_inicio.get(Calendar.YEAR) + ", pendiente_planificado=" + pendiente_planificado + ", pendiente_actual=" + pendiente_actual + ", desviacion=" + desviacion + ", fec_fin_planificada="
-				+ fec_fin_planificada + ", fec_fin_actual=" + fec_fin_actual + ", dias_off=" + dias_off + "]";
+				+ fec_inicio.get(Calendar.DAY_OF_MONTH) + "/" + (fec_inicio.get(Calendar.MONTH) + 1) + "/" + fec_inicio.get(Calendar.YEAR) + ", pendiente_planificado=" + pendiente_planificado
+				+ ", pendiente_actual=" + pendiente_actual + ", desviacion=" + desviacion + ", fec_fin_planificada=" + fec_fin_planificada + ", fec_fin_actual=" + fec_fin_actual + ", dias_off="
+				+ dias_off + "]";
 	}
-	
-	
-
-
 
 }
