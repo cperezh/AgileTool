@@ -43,6 +43,7 @@ public class Tarea implements Serializable {
 	public void recalcular() {
 		calcularPV();
 		calcularSV();
+		calcularFechaFinPV();
 	}
 
 	private void calcularPV() {
@@ -64,6 +65,13 @@ public class Tarea implements Serializable {
 			desviacion = pendiente_planificado;
 		}
 
+	}
+	
+	private void calcularFechaFinPV() {
+		
+		Double numDiasPV = Math.ceil(pendiente_planificado / horasDia / performance);
+		
+		fec_fin_planificada = Dates.calcularFechaFin(Calendar.getInstance(),numDiasPV.intValue());
 	}
 
 	public Integer getId() {

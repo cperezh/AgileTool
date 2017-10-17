@@ -45,13 +45,15 @@ public class Dates {
 		Calendar fecFin = (Calendar) fecInicio.clone();
 
 		while (numDias > 0) {
+			
+			fecFin.add(Calendar.DAY_OF_MONTH, 1);
 
 			// Si no es sabado ni domingo, cuento el día
 			if (fecFin.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && fecFin.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
 				numDias--;
 			}
 
-			fecFin.add(Calendar.DAY_OF_MONTH, 1);
+			
 		}
 		return fecFin;
 	}
