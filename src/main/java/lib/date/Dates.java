@@ -79,11 +79,11 @@ public class Dates {
 
 		Calendar dateTrunc = (Calendar) date.clone();
 
-		dateTrunc.clear(Calendar.HOUR_OF_DAY);
-		dateTrunc.clear(Calendar.HOUR);
-		dateTrunc.clear(Calendar.MINUTE);
-		dateTrunc.clear(Calendar.SECOND);
-		dateTrunc.clear(Calendar.MILLISECOND);
+		dateTrunc.set(Calendar.HOUR_OF_DAY,0);
+		dateTrunc.set(Calendar.HOUR,0);
+		dateTrunc.set(Calendar.MINUTE,0);
+		dateTrunc.set(Calendar.SECOND,0);
+		dateTrunc.set(Calendar.MILLISECOND,0);
 
 		return dateTrunc;
 	}

@@ -244,7 +244,7 @@ public class DatesTest {
 	@Test
 	public void calcularFechaFinJuevesMas3() {
 
-		Calendar fecInicio = Calendar.getInstance();
+		Calendar fecInicio = Dates.normalizarFechaADiaMesAnio(Calendar.getInstance());
 		Calendar fecFinAux = (Calendar) fecInicio.clone();
 		Calendar fecFin;
 

@@ -44,6 +44,7 @@ public class Tarea implements Serializable {
 		calcularPV();
 		calcularSV();
 		calcularFechaFinPV();
+		calcularFechaFinEV();
 	}
 
 	private void calcularPV() {
@@ -66,12 +67,41 @@ public class Tarea implements Serializable {
 		}
 
 	}
-	
+
+	/**
+	 * Solo recalculo la fecha fin planificada, si queda trabajo pendiente
+	 * planificado
+	 */
 	private void calcularFechaFinPV() {
-		
-		Double numDiasPV = Math.ceil(pendiente_planificado / horasDia / performance);
-		
-		fec_fin_planificada = Dates.calcularFechaFin(Calendar.getInstance(),numDiasPV.intValue());
+
+		Double numDiasPendientes;
+
+		if (pendiente_planificado != null && pendiente_planificado != 0) {
+
+			// Resto un día, porque si quedan 8 horas de trabajo, asumo que el
+			// seguimiuento se hace por la mañana y que se consumiran en el día
+			numDiasPendientes = Math.ceil(pendiente_planificado / horasDia / performance) - 1;
+
+			fec_fin_planificada = Dates.calcularFechaFin(Dates.normalizarFechaADiaMesAnio(Calendar.getInstance()), numDiasPendientes.intValue());
+		}
+	}
+
+	/**
+	 * Solo recalculo la fecha fin con el valor ganado actual, si queda trabajo
+	 * pendiente planificado
+	 */
+	private void calcularFechaFinEV() {
+
+		Double numDiasPendientes;
+
+		if (pendiente_actual != null && pendiente_actual != 0) {
+
+			// Resto un día, porque si quedan 8 horas de trabajo, asumo que el
+			// seguimiuento se hace por la mañana y que se consumiran en el día
+			numDiasPendientes = Math.ceil(pendiente_actual / horasDia / performance) - 1;
+
+			fec_fin_actual = Dates.calcularFechaFin(Dates.normalizarFechaADiaMesAnio(Calendar.getInstance()), numDiasPendientes.intValue());
+		}
 	}
 
 	public Integer getId() {
