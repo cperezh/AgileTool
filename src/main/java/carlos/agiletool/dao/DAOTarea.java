@@ -21,7 +21,11 @@ public class DAOTarea {
 	}
 	
 	public void modificarTarea(Tarea tarea) {
-		entityManager.merge(tarea);
+		tarea = entityManager.merge(tarea);
+	}
+	
+	public void insertarTarea(Tarea tarea) {
+		entityManager.persist(tarea);
 	}
 	
 }

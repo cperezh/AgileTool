@@ -2,7 +2,7 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
-import lib.date.Dates;
+import carlos.agiletool.lib.date.Dates;
 
 public class DatesTest {
 
@@ -149,15 +149,15 @@ public class DatesTest {
 	public void calcularFechaFinLunesMas1() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 17);
-		fecFinAux.set(2017, Calendar.OCTOBER, 18);
+		fecFinAux.set(2017, Calendar.OCTOBER, 17);
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 
@@ -165,7 +165,7 @@ public class DatesTest {
 	public void calcularFechaFinLunesMas0() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 18);
@@ -173,7 +173,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 0);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 
@@ -181,7 +181,7 @@ public class DatesTest {
 	public void calcularFechaFinLunesMenos1() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 18);
@@ -189,7 +189,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, -1);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 
@@ -197,15 +197,15 @@ public class DatesTest {
 	public void calcularFechaFinLunesMas2() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 18);
-		fecFinAux.set(2017, Calendar.OCTOBER, 20);
+		fecFinAux.set(2017, Calendar.OCTOBER, 19);
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 2);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 
@@ -213,15 +213,15 @@ public class DatesTest {
 	public void calcularFechaFinViernesMas1() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 13);
-		fecFinAux.set(2017, Calendar.OCTOBER, 16);
+		fecFinAux.set(2017, Calendar.OCTOBER, 13);
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 	
@@ -229,7 +229,7 @@ public class DatesTest {
 	public void calcularFechaFinSabadoMas1() {
 
 		Calendar fecInicio = Calendar.getInstance();
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 14);
@@ -237,23 +237,39 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 	
 	@Test
 	public void calcularFechaFinJuevesMas3() {
 
-		Calendar fecInicio = Dates.normalizarFechaADiaMesAnio(Calendar.getInstance());
-		Calendar fecFinAux = (Calendar) fecInicio.clone();
+		Calendar fecInicio = Calendar.getInstance();
+		Calendar fecFinAux = Calendar.getInstance();
 		Calendar fecFin;
 
 		fecInicio.set(2017, Calendar.OCTOBER, 12);
-		fecFinAux.set(2017, Calendar.OCTOBER, 17);
+		fecFinAux.set(2017, Calendar.OCTOBER, 16);
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 3);
 
-		assert (fecFin.equals(fecFinAux));
+		assert (Dates.iguales(fecFin,fecFinAux));
+
+	}
+	
+	@Test
+	public void calcularFechaFinSeguimientoEnDomingo() {
+
+		Calendar fecInicio = Calendar.getInstance();
+		Calendar fecFinAux = Calendar.getInstance();
+		Calendar fecFin;
+
+		fecInicio.set(2017, Calendar.OCTOBER, 19);
+		fecFinAux.set(2017, Calendar.OCTOBER, 20);
+
+		fecFin = Dates.calcularFechaFin(fecInicio, 2);
+
+		assert (Dates.iguales(fecFin,fecFinAux));
 
 	}
 

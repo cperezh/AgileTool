@@ -26,6 +26,7 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 
 	// FIN ON-LOAD
 
+	//MODIFICAR TAREA
 	$scope.modificarTareas = function() {
 
 		parametros = $scope.tareas;
@@ -41,6 +42,15 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 		}, function error(response) {
 			$scope.mensaje = response.data;
 		});
+	}
+	
+	//INSERTAR TAREA
+	$scope.insertarTarea = function() {
+		
+		var tarea = {};
+
+		$scope.tareas.push(tarea);
+
 	}
 
 	function formatDate(tareas) {

@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import lib.date.Dates;
+import carlos.agiletool.lib.date.Dates;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = "Tarea.buscarTodas", query = "SELECT t FROM Tarea t") })
@@ -37,7 +37,10 @@ public class Tarea implements Serializable {
 	private Double dias_off;
 
 	public Tarea() {
-
+		performance = 1d;
+		horas_tarea = 0d;
+		fec_inicio = Calendar.getInstance();
+		pendiente_actual = 0d;
 	}
 
 	public void recalcular() {
@@ -59,49 +62,35 @@ public class Tarea implements Serializable {
 
 	private void calcularSV() {
 
-		if (pendiente_actual != null) {
-			desviacion = pendiente_planificado - pendiente_actual;
-
-		} else {
-			desviacion = pendiente_planificado;
-		}
+		desviacion = pendiente_planificado - pendiente_actual;
 
 	}
 
 	/**
-	 * Solo recalculo la fecha fin planificada, si queda trabajo pendiente
-	 * planificado
+	 * Calculo la fecha fin planificada, en funcion de la fecha de incio y las
+	 * horas tarea
 	 */
 	private void calcularFechaFinPV() {
 
 		Double numDiasPendientes;
 
-		if (pendiente_planificado != null && pendiente_planificado != 0) {
+		numDiasPendientes = Math.ceil(horas_tarea / horasDia / performance);
 
-			// Resto un día, porque si quedan 8 horas de trabajo, asumo que el
-			// seguimiuento se hace por la mañana y que se consumiran en el día
-			numDiasPendientes = Math.ceil(pendiente_planificado / horasDia / performance) - 1;
+		fec_fin_planificada = Dates.calcularFechaFin(fec_inicio, numDiasPendientes.intValue());
 
-			fec_fin_planificada = Dates.calcularFechaFin(Dates.normalizarFechaADiaMesAnio(Calendar.getInstance()), numDiasPendientes.intValue());
-		}
 	}
 
 	/**
-	 * Solo recalculo la fecha fin con el valor ganado actual, si queda trabajo
-	 * pendiente planificado
+	 * Calculo la fecha fin actuakl, en funcion de los dias pendientes y la fecha de hoy
 	 */
 	private void calcularFechaFinEV() {
 
 		Double numDiasPendientes;
 
-		if (pendiente_actual != null && pendiente_actual != 0) {
+		numDiasPendientes = Math.ceil(pendiente_actual / horasDia / performance);
 
-			// Resto un día, porque si quedan 8 horas de trabajo, asumo que el
-			// seguimiuento se hace por la mañana y que se consumiran en el día
-			numDiasPendientes = Math.ceil(pendiente_actual / horasDia / performance) - 1;
+		fec_fin_actual = Dates.calcularFechaFin(Calendar.getInstance(), numDiasPendientes.intValue());
 
-			fec_fin_actual = Dates.calcularFechaFin(Dates.normalizarFechaADiaMesAnio(Calendar.getInstance()), numDiasPendientes.intValue());
-		}
 	}
 
 	public Integer getId() {
