@@ -20,33 +20,20 @@
 		<tbody>
 			<tr ng-repeat="tarea in tareas">
 				<th scope="row">{{tarea.id}}</th>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.nombre_persona"></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.nombre_tarea"></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.performance"></td>
-				<td><input type="number" class="form-control"
-					placeholder="Performance" ng-model="tarea.horas_tarea"></td>
-				<td><input type="date" class="form-control"
-					ng-model="tarea.fec_inicio" /></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.pendiente_planificado"></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.pendiente_actual"></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.desviacion"></td>
-				<td><input type="date" class="form-control"
-					ng-model="tarea.fec_fin_planificada"></td>
-				<td><input type="date" class="form-control"
-					ng-model="tarea.fec_fin_actual"></td>
-				<td><input type="text" class="form-control"
-					placeholder="Performance" ng-model="tarea.dias_off"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.nombre_persona"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.nombre_tarea"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.performance"></td>
+				<td><input type="number" class="form-control" placeholder="Performance" ng-model="tarea.horas_tarea"></td>
+				<td><input type=date class="form-control" ng-model="tarea.fec_inicio" /></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.pendiente_planificado"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.pendiente_actual"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.desviacion"></td>
+				<td><input type="date" class="form-control" ng-model="tarea.fec_fin_planificada"></td>
+				<td><input type="date" class="form-control" ng-model="tarea.fec_fin_actual"></td>
+				<td><input type="text" class="form-control" placeholder="Performance" ng-model="tarea.dias_off"></td>
 			</tr>
 		</tbody>
 	</table>
-	<button type="button" class="btn btn-primary" ng-click="insertarTarea()">A&ntilde;adir
-		Tarea</button>
-	<button type="button" class="btn btn-primary"
-		ng-click="modificarTareas()">Modificar Tareas</button>
+	<button type="button" class="btn btn-primary" ng-click="insertarTarea()">A&ntilde;adir Tarea</button>
+	<button type="button" class="btn btn-primary" ng-click="modificarTareas()">Modificar Tareas</button>
 </div>

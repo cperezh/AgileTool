@@ -29,7 +29,7 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 	//MODIFICAR TAREA
 	$scope.modificarTareas = function() {
 
-		parametros = $scope.tareas;
+		parametros = ($scope.tareas);
 
 		var urlInsertar = serverURL + '/tareas';
 
@@ -66,6 +66,20 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 
 		return tareas;
 
+	}
+	
+	function formatDateOut(tareas) {
+
+		for (i = 0; i < tareas.length; i++) {
+			tarea = tareas[i];
+
+			tarea.fec_inicio = new Date(tarea.fec_inicio.getTime());
+			tarea.fec_fin_planificada = new Date(tarea.fec_fin_planificada);
+			tarea.fec_fin_actual = new Date(tarea.fec_fin_actual);
+
+		}
+
+		return tareas;
 	}
 
 });

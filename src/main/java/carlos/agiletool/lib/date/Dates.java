@@ -10,16 +10,21 @@ public class Dates {
 		if (fecInicio == null || fecFin == null)
 			return 0;
 
-		Calendar fechaInicioAux = Dates.normalizarFechaADiaMesAnio(fecInicio);
+		Calendar fechaInicioAux = (Calendar) fecInicio.clone();
+		Calendar fecFinAux = (Calendar) fecFin.clone();
 
-		Calendar fechaFinAux = Dates.normalizarFechaADiaMesAnio(fecFin);
+		// Antes de comparar las fechas, igualo las zonas horarias
+		fechaInicioAux.setTimeZone(Calendar.getInstance().getTimeZone());
+		fechaInicioAux.getTimeInMillis();
+		fecFinAux.setTimeZone(Calendar.getInstance().getTimeZone());
+		fecFinAux.getTimeInMillis();
 
 		int days = 0;
 
-		while (fechaInicioAux.before(fechaFinAux.clone())) {
+		while (Dates.antes(fechaInicioAux, fecFin)) {
 
 			// Si no es sabado ni domingo, cuento el día
-			if (fechaInicioAux.get(Calendar.DAY_OF_WEEK) != Calendar.SATURDAY && fechaInicioAux.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
+			if (!esFinDeSemana(fechaInicioAux)) {
 				days++;
 			}
 
@@ -27,6 +32,7 @@ public class Dates {
 		}
 
 		return days;
+
 	}
 
 	/**
@@ -46,19 +52,14 @@ public class Dates {
 
 		Calendar fecFin = (Calendar) fecInicio.clone();
 
-		// Si es fin de semana sumo un día, porque el día de hoy no puede contar
-		// como día hábil
-		if (esFinDeSemana(fecFin))
-			numDias++;
-
 		while (numDias > 1 || esFinDeSemana(fecFin)) {
-
-			fecFin.add(Calendar.DAY_OF_MONTH, 1);
 
 			// Si no es sabado ni domingo, cuento el día avanzado
 			if (!esFinDeSemana(fecFin)) {
 				numDias--;
 			}
+
+			fecFin.add(Calendar.DAY_OF_MONTH, 1);
 
 		}
 		return fecFin;
@@ -84,34 +85,51 @@ public class Dates {
 		return diaIgual && mesIgual && anioIgual;
 	}
 
-	public static Calendar normalizarFechaADiaMesAnio(Calendar f1) {
+	/**
+	 * True su fec1Aux < f2, false si fec1Aux >= f2
+	 * 
+	 * @param fec1Aux
+	 * @param fec2Aux
+	 * @return
+	 */
+	public static Boolean antes(Calendar fec1, Calendar fec2) {
+		Boolean antes;
 
-		Calendar faux = Calendar.getInstance();
+		Calendar fec1Aux = (Calendar) fec1.clone();
+		Calendar fec2Aux = (Calendar) fec2.clone();
 
-		faux = Dates.trunc(faux);
+		// Antes de comparar las fechas, igualo las zonas horarias
+		fec1Aux.setTimeZone(Calendar.getInstance().getTimeZone());
+		fec1Aux.getTimeInMillis();
 
-		// Normalizo la zona horaria para poder coger la fecha, que depende de
-		// la zona horaria
-		f1.setTimeZone(faux.getTimeZone());
+		fec2Aux.setTimeZone(Calendar.getInstance().getTimeZone());
+		fec2Aux.getTimeInMillis();
 
-		faux.set(Calendar.DAY_OF_MONTH, f1.get(Calendar.DAY_OF_MONTH));
-		faux.set(Calendar.MONTH, f1.get(Calendar.MONTH));
-		faux.set(Calendar.YEAR, f1.get(Calendar.YEAR));
+		// AÑO MENOR
+		if (fec1Aux.get(Calendar.YEAR) < fec2Aux.get(Calendar.YEAR)) {
+			antes = true;
+		}
+		// AÑO MAYOR
+		else if (fec1Aux.get(Calendar.YEAR) > fec2Aux.get(Calendar.YEAR)) {
+			antes = false;
+			// AÑOS IGUALES //MES MENOR
+		} else if (fec1Aux.get(Calendar.MONTH) < fec2Aux.get(Calendar.MONTH)) {
+			antes = true;
+			// AÑOS IGUALES //MES MAYOR
+		} else if (fec1Aux.get(Calendar.MONTH) > fec2Aux.get(Calendar.MONTH)) {
+			antes = false;
+			// AÑOS IGUALES //MES IGUALES //DIA MENOR
+		} else if (fec1Aux.get(Calendar.DAY_OF_MONTH) < fec2Aux.get(Calendar.DAY_OF_MONTH)) {
+			antes = true;
+			// AÑOS IGUALES //MES IGUALES //DIA MENOR
+		} else if (fec1Aux.get(Calendar.DAY_OF_MONTH) > fec2Aux.get(Calendar.DAY_OF_MONTH)) {
+			antes = false;
+			// AÑOS IGUALES //MES IGUALES //DIA IGUALES
+		} else {
+			antes = false;
+		}
 
-		return faux;
-	}
-
-	private static Calendar trunc(Calendar date) {
-
-		Calendar dateTrunc = (Calendar) date.clone();
-
-		dateTrunc.set(Calendar.HOUR_OF_DAY, 0);
-		dateTrunc.set(Calendar.HOUR, 0);
-		dateTrunc.set(Calendar.MINUTE, 0);
-		dateTrunc.set(Calendar.SECOND, 0);
-		dateTrunc.set(Calendar.MILLISECOND, 0);
-
-		return dateTrunc;
+		return antes;
 	}
 
 	public static String toString(Calendar date) {

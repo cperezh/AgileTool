@@ -1,3 +1,5 @@
+import static org.junit.Assert.assertFalse;
+
 import java.util.Calendar;
 
 import org.junit.Test;
@@ -157,7 +159,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
 
@@ -173,7 +175,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 0);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
 
@@ -189,7 +191,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, -1);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
 
@@ -205,7 +207,7 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 2);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
 
@@ -221,10 +223,10 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
-	
+
 	@Test
 	public void calcularFechaFinSabadoMas1() {
 
@@ -237,10 +239,10 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 1);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
-	
+
 	@Test
 	public void calcularFechaFinJuevesMas3() {
 
@@ -253,10 +255,10 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 3);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
 	}
-	
+
 	@Test
 	public void calcularFechaFinSeguimientoEnDomingo() {
 
@@ -269,8 +271,92 @@ public class DatesTest {
 
 		fecFin = Dates.calcularFechaFin(fecInicio, 2);
 
-		assert (Dates.iguales(fecFin,fecFinAux));
+		assert (Dates.iguales(fecFin, fecFinAux));
 
+	}
+
+	@Test
+	public void antesTestOKAnio() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.OCTOBER, 21);
+		fecFin.set(2017, Calendar.OCTOBER, 20);
+
+		assert (Dates.antes(fecInicio, fecFin));
+	}
+
+	@Test
+	public void antesTestKOAnio() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.OCTOBER, 21);
+		fecFin.set(2015, Calendar.OCTOBER, 22);
+
+		assertFalse(Dates.antes(fecInicio, fecFin));
+	}
+
+	@Test
+	public void antesTestOKMes() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.SEPTEMBER, 23);
+		fecFin.set(2016, Calendar.OCTOBER, 22);
+
+		assert (Dates.antes(fecInicio, fecFin));
+	}
+
+	@Test
+	public void antesTestKOMes() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.NOVEMBER, 21);
+		fecFin.set(2016, Calendar.OCTOBER, 22);
+
+		assertFalse(Dates.antes(fecInicio, fecFin));
+	}
+
+	@Test
+	public void antesTestOKDia() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.OCTOBER, 21);
+		fecFin.set(2016, Calendar.OCTOBER, 22);
+
+		assert (Dates.antes(fecInicio, fecFin));
+	}
+
+	@Test
+	public void antesTestKODia() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.OCTOBER, 23);
+		fecFin.set(2016, Calendar.OCTOBER, 22);
+
+		assertFalse(Dates.antes(fecInicio, fecFin));
+	}
+	
+	@Test
+	public void antesTestKOIguales() {
+		Calendar fecInicio = Calendar.getInstance();
+
+		Calendar fecFin = Calendar.getInstance();
+
+		fecInicio.set(2016, Calendar.OCTOBER, 22);
+		fecFin.set(2016, Calendar.OCTOBER, 22);
+
+		assertFalse(Dates.antes(fecInicio, fecFin));
 	}
 
 }
