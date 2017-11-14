@@ -34,7 +34,7 @@ public class Tarea implements Serializable {
 	private Calendar fec_fin_planificada;
 	@Temporal(TemporalType.DATE)
 	private Calendar fec_fin_actual;
-	private Double dias_off;
+	private String dias_off;
 
 	public Tarea() {
 		performance = 1d;
@@ -189,11 +189,11 @@ public class Tarea implements Serializable {
 		this.fec_fin_actual = fec_fin_actual;
 	}
 
-	public Double getDias_off() {
+	public String getDias_off() {
 		return dias_off;
 	}
 
-	public void setDias_off(Double dias_off) {
+	public void setDias_off(String dias_off) {
 		this.dias_off = dias_off;
 	}
 
