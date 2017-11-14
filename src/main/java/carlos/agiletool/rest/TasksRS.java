@@ -12,11 +12,11 @@ import javax.ws.rs.core.MediaType;
 
 import carlos.agiletool.dao.DAOTarea;
 import carlos.agiletool.entity.Tarea;
-
+	
 @Path("/tareas")
 @Produces(MediaType.APPLICATION_JSON)
 public class TasksRS {
-	
+
 	@EJB
 	DAOTarea daoTarea;
 
@@ -24,23 +24,23 @@ public class TasksRS {
 	public List<Tarea> getAllTasks() {
 
 		List<Tarea> tareas = new ArrayList<Tarea>();
-		
+
 		tareas = daoTarea.getAllTasks();
-		
+
 		return tareas;
 	}
-	
+
 	@PUT
 	public List<Tarea> modificarTareas(List<Tarea> tareas) {
-		
-		for (Tarea tarea:tareas) {
-				
+
+		for (Tarea tarea : tareas) {
+
 			tarea.recalcular();
-			
+
 			daoTarea.modificarTarea(tarea);
 		}
-		
+
 		return getAllTasks();
 	}
-	
+
 }

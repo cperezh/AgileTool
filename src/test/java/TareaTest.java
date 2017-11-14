@@ -36,11 +36,9 @@ public class TareaTest {
 		tarea.setPendiente_actual(40d);
 
 		Calendar fecInicio = Calendar.getInstance();
-		fecInicio.set(2017, Calendar.OCTOBER, 18);
+		Calendar fecFin = Dates.calcularFechaFin(fecInicio, 5);
+				
 		tarea.setFec_inicio(fecInicio);
-		
-		Calendar fecFin = Calendar.getInstance();
-		fecFin.add(Calendar.DAY_OF_MONTH, 5);
 	
 		tarea.recalcular();
 

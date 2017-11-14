@@ -11,13 +11,6 @@ public class Dates {
 			return 0;
 
 		Calendar fechaInicioAux = (Calendar) fecInicio.clone();
-		Calendar fecFinAux = (Calendar) fecFin.clone();
-
-		// Antes de comparar las fechas, igualo las zonas horarias
-		fechaInicioAux.setTimeZone(Calendar.getInstance().getTimeZone());
-		fechaInicioAux.getTimeInMillis();
-		fecFinAux.setTimeZone(Calendar.getInstance().getTimeZone());
-		fecFinAux.getTimeInMillis();
 
 		int days = 0;
 
@@ -97,13 +90,6 @@ public class Dates {
 
 		Calendar fec1Aux = (Calendar) fec1.clone();
 		Calendar fec2Aux = (Calendar) fec2.clone();
-
-		// Antes de comparar las fechas, igualo las zonas horarias
-		fec1Aux.setTimeZone(Calendar.getInstance().getTimeZone());
-		fec1Aux.getTimeInMillis();
-
-		fec2Aux.setTimeZone(Calendar.getInstance().getTimeZone());
-		fec2Aux.getTimeInMillis();
 
 		// AÑO MENOR
 		if (fec1Aux.get(Calendar.YEAR) < fec2Aux.get(Calendar.YEAR)) {

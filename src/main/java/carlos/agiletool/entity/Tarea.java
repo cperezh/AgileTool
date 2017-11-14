@@ -44,10 +44,18 @@ public class Tarea implements Serializable {
 	}
 
 	public void recalcular() {
+		
+		setTime();
+		
 		calcularPV();
 		calcularSV();
 		calcularFechaFinPV();
 		calcularFechaFinEV();
+	}
+	
+	private void setTime() {
+		this.getFec_inicio().getTimeInMillis();
+		this.getFec_inicio().setTimeZone(Calendar.getInstance().getTimeZone());		
 	}
 
 	private void calcularPV() {
