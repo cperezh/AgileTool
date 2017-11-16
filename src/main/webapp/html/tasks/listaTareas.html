@@ -6,7 +6,8 @@
 			<label><b>Nombres</b></label><input type="text" class="form-control" placeholder="" ng-model="tarea.nombre_persona">
 		</div>
 		<div class="col-2">
-			<label><b>Tarea</b></label><input type="text" class="form-control" placeholder="" ng-model="tarea.nombre_tarea">
+			<label><b>Tarea</b></label>
+			<textarea class="form-control" placeholder="" ng-model="tarea.nombre_tarea"></textarea>
 		</div>
 		<div class="col">
 			<label><b>%Perf.</b></label><input type="text" class="form-control" placeholder="" ng-model="tarea.performance">
@@ -24,7 +25,7 @@
 			<label><b>EV</b></label><input type="text" class="form-control" placeholder="" ng-model="tarea.pendiente_actual">
 		</div>
 		<div class="col">
-			<label><b>SV</b></label><input type="text" class="form-control" placeholder="" ng-model="tarea.desviacion" readonly>
+			<label><b>SV</b></label><input type="text" class="form-control text-white" placeholder="" ng-model="tarea.desviacion" readonly ng-style="{'background-color':bgColor(tarea.desviacion)}">
 		</div>
 		<div class="col">
 			<label><b>F. Fin PV</b></label><input type="date" class="form-control" ng-model="tarea.fec_fin_planificada" readonly>
@@ -32,7 +33,10 @@
 		<div class="col">
 			<label><b>F. Fin EV</b></label><input type="date" class="form-control" ng-model="tarea.fec_fin_actual" readonly>
 		</div>
-
+		<div class="col-2">
+			<label><b>Dias_off</b></label>
+			<textarea class="form-control" placeholder="" ng-model="tarea.dias_off"></textarea>
+		</div>
 	</div>
 
 	<button type="button" class="btn btn-primary" ng-click="insertarTarea()">A&ntilde;adir Tarea</button>

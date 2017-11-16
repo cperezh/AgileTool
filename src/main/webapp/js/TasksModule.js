@@ -68,18 +68,12 @@ TasksModule.controller('GetAllTaskController', function($scope, $http,
 
 	}
 	
-	function formatDateOut(tareas) {
-
-		for (i = 0; i < tareas.length; i++) {
-			tarea = tareas[i];
-
-			tarea.fec_inicio = new Date(tarea.fec_inicio.getTime());
-			tarea.fec_fin_planificada = new Date(tarea.fec_fin_planificada);
-			tarea.fec_fin_actual = new Date(tarea.fec_fin_actual);
-
-		}
-
-		return tareas;
+	$scope.bgColor = function (desviacion){
+		
+		if (desviacion<0) 
+			return "red" 
+		else  
+			return "green";
 	}
 
 });

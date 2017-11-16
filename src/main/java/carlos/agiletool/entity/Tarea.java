@@ -65,6 +65,8 @@ public class Tarea implements Serializable {
 		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance());
 
 		pendiente_planificado = horas_tarea - (performance * horasDia * diasHabiles);
+		
+		if (pendiente_planificado < 0) pendiente_planificado = 0d;
 
 	}
 
@@ -80,11 +82,11 @@ public class Tarea implements Serializable {
 	 */
 	private void calcularFechaFinPV() {
 
-		Double numDiasPendientes;
+		Double numDiasTarea;
 
-		numDiasPendientes = Math.ceil(horas_tarea / horasDia / performance);
+		numDiasTarea = Math.ceil(horas_tarea / horasDia / performance);
 
-		fec_fin_planificada = Dates.calcularFechaFin(fec_inicio, numDiasPendientes.intValue());
+		fec_fin_planificada = Dates.calcularFechaFin(fec_inicio, numDiasTarea.intValue());
 
 	}
 
