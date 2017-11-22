@@ -2,10 +2,20 @@ package carlos.agiletool.lib.date;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class Dates {
 
-	public static int contarDíasHabilesEntreFechas(Calendar fecInicio, Calendar fecFin) {
+	/**
+	 * Calcula los dias habiles entre dos fechas, sin incluir la fecha fin. Si
+	 * fecha inicio y fecha fin son iguales, devuelve 0.
+	 * 
+	 * @param fecInicio
+	 * @param fecFin
+	 * @param festivos
+	 * @return
+	 */
+	public static int contarDíasHabilesEntreFechas(Calendar fecInicio, Calendar fecFin, List<Calendar> festivos) {
 
 		if (fecInicio == null || fecFin == null)
 			return 0;
@@ -16,8 +26,8 @@ public class Dates {
 
 		while (Dates.antes(fechaInicioAux, fecFin)) {
 
-			// Si no es sabado ni domingo, cuento el día
-			if (!esFinDeSemana(fechaInicioAux)) {
+			// Si no es sabado ni domingo ni festivo, cuento el día
+			if (!esFinDeSemana(fechaInicioAux) && !esFestivo(fechaInicioAux, festivos)) {
 				days++;
 			}
 
@@ -31,21 +41,24 @@ public class Dates {
 	/**
 	 * Calcula la fecha fin en funcion de los días hábiles que han pasado desde
 	 * la fechaInicio, sumando un número de dias. Si la fechaInicio es fin de
-	 * semana, devuelve el primer dia habil posterior. Tiene en cuenta que el
-	 * día de la fechaInicio cuenta como día hábil
+	 * semana o festivo, devuelve el primer dia habil posterior. Tiene en cuenta
+	 * que el día de la fechaInicio cuenta como día hábil.
+	 * 
 	 * 
 	 * @param fecInicio
 	 * @param numDias
+	 *            si es 1, la fecha fin es la misma que la fecha inicio, porque
+	 *            cuenta el día de hoy (fecha inicio) como habil
 	 * @return
 	 */
-	public static Calendar calcularFechaFin(Calendar fecInicio, int numDias) {
+	public static Calendar calcularFechaFin(Calendar fecInicio, int numDias, List<Calendar> festivos) {
 
 		if (fecInicio == null)
 			return null;
 
 		Calendar fecFin = (Calendar) fecInicio.clone();
 
-		while (numDias > 1 || esFinDeSemana(fecFin)) {
+		while (numDias > 1 || esFinDeSemana(fecFin) || esFestivo(fecFin, festivos)) {
 
 			// Si no es sabado ni domingo, cuento el día avanzado
 			if (!esFinDeSemana(fecFin)) {
@@ -65,6 +78,24 @@ public class Dates {
 		} else {
 			return false;
 		}
+	}
+
+	public static Boolean esFestivo(Calendar fecha, List<Calendar> festivos) {
+
+		Boolean iguales = false;
+
+		if (festivos != null) {
+
+			for (Calendar festivo : festivos) {
+
+				iguales = iguales(festivo, fecha);
+
+				if (iguales)
+					break;
+			}
+		}
+
+		return iguales;
 	}
 
 	public static Boolean iguales(Calendar fecha1, Calendar fecha2) {

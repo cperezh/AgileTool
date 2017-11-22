@@ -1,7 +1,11 @@
 package carlos.agiletool.entity;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import carlos.agiletool.lib.date.Dates;
 
@@ -35,6 +40,8 @@ public class Tarea implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Calendar fec_fin_actual;
 	private String dias_off;
+	@Transient
+	private List<Calendar> festivos;
 
 	public Tarea() {
 		performance = 1d;
@@ -44,29 +51,30 @@ public class Tarea implements Serializable {
 	}
 
 	public void recalcular() {
-		
+
 		setTime();
-		
+
 		calcularPV();
 		calcularSV();
 		calcularFechaFinPV();
 		calcularFechaFinEV();
 	}
-	
+
 	private void setTime() {
 		this.getFec_inicio().getTimeInMillis();
-		this.getFec_inicio().setTimeZone(Calendar.getInstance().getTimeZone());		
+		this.getFec_inicio().setTimeZone(Calendar.getInstance().getTimeZone());
 	}
 
 	private void calcularPV() {
 
 		int diasHabiles;
 
-		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance());
+		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance(), festivos);
 
 		pendiente_planificado = horas_tarea - (performance * horasDia * diasHabiles);
-		
-		if (pendiente_planificado < 0) pendiente_planificado = 0d;
+
+		if (pendiente_planificado < 0)
+			pendiente_planificado = 0d;
 
 	}
 
@@ -86,12 +94,13 @@ public class Tarea implements Serializable {
 
 		numDiasTarea = Math.ceil(horas_tarea / horasDia / performance);
 
-		fec_fin_planificada = Dates.calcularFechaFin(fec_inicio, numDiasTarea.intValue());
+		fec_fin_planificada = Dates.calcularFechaFin(fec_inicio, numDiasTarea.intValue(), festivos);
 
 	}
 
 	/**
-	 * Calculo la fecha fin actuakl, en funcion de los dias pendientes y la fecha de hoy
+	 * Calculo la fecha fin actuakl, en funcion de los dias pendientes y la
+	 * fecha de hoy
 	 */
 	private void calcularFechaFinEV() {
 
@@ -99,7 +108,7 @@ public class Tarea implements Serializable {
 
 		numDiasPendientes = Math.ceil(pendiente_actual / horasDia / performance);
 
-		fec_fin_actual = Dates.calcularFechaFin(Calendar.getInstance(), numDiasPendientes.intValue());
+		fec_fin_actual = Dates.calcularFechaFin(Calendar.getInstance(), numDiasPendientes.intValue(), festivos);
 
 	}
 
@@ -195,8 +204,28 @@ public class Tarea implements Serializable {
 		return dias_off;
 	}
 
-	public void setDias_off(String dias_off) {
+	public void setDias_off(String dias_off) throws ParseException {
 		this.dias_off = dias_off;
+		
+		festivos = new ArrayList<Calendar>();
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+		String[] festivoString = dias_off.split(",");
+
+		for (String fecha : festivoString) {
+			cal = Calendar.getInstance();
+			cal.setTime(sdf.parse(fecha));
+			festivos.add(cal);
+		}
+	}
+
+	public List<Calendar> getFestivos() {
+		return festivos;
+	}
+
+	public void setFestivos(List<Calendar> festivos) {
+		this.festivos = festivos;
 	}
 
 	@Override
