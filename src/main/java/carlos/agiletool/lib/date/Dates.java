@@ -60,8 +60,8 @@ public class Dates {
 
 		while (numDias > 1 || esFinDeSemana(fecFin) || esFestivo(fecFin, festivos)) {
 
-			// Si no es sabado ni domingo, cuento el día avanzado
-			if (!esFinDeSemana(fecFin)) {
+			// Si no es sabado ni domingo ni festivo, cuento el día avanzado
+			if (!esFinDeSemana(fecFin) && !esFestivo(fecFin, festivos)) {
 				numDias--;
 			}
 

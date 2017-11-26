@@ -1,6 +1,5 @@
 package carlos.agiletool.entity;
 
-import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ import carlos.agiletool.lib.date.Dates;
 @Entity
 @NamedQueries({ @NamedQuery(name = "Tarea.buscarTodas", query = "SELECT t FROM Tarea t") })
 
-public class Tarea implements Serializable {
+public class Tarea {
 
 	private static final int horasDia = 8;
 
