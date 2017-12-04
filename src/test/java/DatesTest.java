@@ -58,7 +58,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 6);
 		fecFin.set(2017, Calendar.OCTOBER, 6);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -72,7 +72,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 9);
 		fecFin.set(2017, Calendar.OCTOBER, 10);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 1);
 	}
@@ -86,7 +86,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 7);
 		fecFin.set(2017, Calendar.OCTOBER, 7);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -100,7 +100,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 7);
 		fecFin.set(2017, Calendar.OCTOBER, 8);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -114,7 +114,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 7);
 		fecFin.set(2017, Calendar.OCTOBER, 9);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -128,7 +128,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 7);
 		fecFin.set(2017, Calendar.OCTOBER, 10);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 1);
 	}
@@ -147,7 +147,7 @@ public class DatesTest {
 		List<Calendar> festivos = new ArrayList<Calendar>();
 		festivos.add(festivo);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,festivos);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,festivos);
 
 		assert (dias == 0);
 	}
@@ -161,7 +161,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 9);
 		fecFin.set(2017, Calendar.OCTOBER, 11);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 2);
 	}
@@ -181,7 +181,7 @@ public class DatesTest {
 		festivos.add(fecInicio);
 		festivos.add(festivo);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,festivos);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,festivos);
 
 		assert (dias == 0);
 	}
@@ -195,7 +195,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.OCTOBER, 6);
 		fecFin.set(2017, Calendar.OCTOBER, 9);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 1);
 	}
@@ -209,7 +209,7 @@ public class DatesTest {
 		fecInicio.set(2017, Calendar.SEPTEMBER, 29);
 		fecFin.set(2017, Calendar.OCTOBER, 2);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 1);
 	}
@@ -223,7 +223,7 @@ public class DatesTest {
 		fecInicio.set(2016, Calendar.DECEMBER, 31);
 		fecFin.set(2016, Calendar.DECEMBER, 30);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -236,7 +236,7 @@ public class DatesTest {
 
 		fecFin.set(2016, Calendar.DECEMBER, 30);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}
@@ -250,7 +250,7 @@ public class DatesTest {
 
 		fecInicio.set(2016, Calendar.DECEMBER, 30);
 
-		int dias = Dates.contarDíasHabilesEntreFechas(fecInicio, fecFin,null);
+		int dias = Dates.contarDiasHabilesEntreFechas(fecInicio, fecFin,null);
 
 		assert (dias == 0);
 	}

@@ -68,7 +68,7 @@ public class Tarea {
 
 		int diasHabiles;
 
-		diasHabiles = Dates.contarDíasHabilesEntreFechas(fec_inicio, Calendar.getInstance(), festivos);
+		diasHabiles = Dates.contarDiasHabilesEntreFechas(fec_inicio, Calendar.getInstance(), festivos);
 
 		pendiente_planificado = horas_tarea - (performance * horasDia * diasHabiles);
 

@@ -15,7 +15,7 @@ public class Dates {
 	 * @param festivos
 	 * @return
 	 */
-	public static int contarDíasHabilesEntreFechas(Calendar fecInicio, Calendar fecFin, List<Calendar> festivos) {
+	public static int contarDiasHabilesEntreFechas(Calendar fecInicio, Calendar fecFin, List<Calendar> festivos) {
 
 		if (fecInicio == null || fecFin == null)
 			return 0;
