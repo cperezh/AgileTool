@@ -26,7 +26,7 @@ public class Dates {
 
 		while (Dates.antes(fechaInicioAux, fecFin)) {
 
-			// Si no es sabado ni domingo ni festivo, cuento el día
+			// Si no es sabado ni domingo ni festivo, cuento el dia
 			if (!esFinDeSemana(fechaInicioAux) && !esFestivo(fechaInicioAux, festivos)) {
 				days++;
 			}
@@ -39,7 +39,7 @@ public class Dates {
 	}
 
 	/**
-	 * Calcula la fecha fin en funcion de los días hábiles que han pasado desde
+	 * Calcula la fecha fin en funcion de los dias habiles que han pasado desde
 	 * la fechaInicio, sumando un número de dias. Si la fechaInicio es fin de
 	 * semana o festivo, devuelve el primer dia habil posterior. Tiene en cuenta
 	 * que el día de la fechaInicio cuenta como día hábil.
