@@ -50,7 +50,7 @@ public class DatesTest {
 	
 
 	@Test
-	public void testContarDíasHabilesEntreFechasMismoDia() {
+	public void testContarDiasHabilesEntreFechasMismoDia() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -64,7 +64,7 @@ public class DatesTest {
 	}
 	
 	@Test
-	public void testContarDíasHabilesEntreFechas1Dia() {
+	public void testContarDiasHabilesEntreFechas1Dia() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -78,7 +78,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechas1diaSabado() {
+	public void testContarDiasHabilesEntreFechas1diaSabado() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -92,7 +92,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechas1diaSabadoYDomingo() {
+	public void testContarDiasHabilesEntreFechas1diaSabadoYDomingo() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -106,7 +106,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechas1diaSabadoDomingoYLunes() {
+	public void testContarDiasHabilesEntreFechas1diaSabadoDomingoYLunes() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -120,7 +120,7 @@ public class DatesTest {
 	}
 	
 	@Test
-	public void testContarDíasHabilesEntreFechas1diaSabadoDomingoLunesYMartes() {
+	public void testContarDiasHabilesEntreFechas1diaSabadoDomingoLunesYMartes() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -134,7 +134,7 @@ public class DatesTest {
 	}
 	
 	@Test
-	public void testContarDíasHabilesEntreFechas1diaSabadoDomingoLunesYMartesConLunesFestivo() {
+	public void testContarDiasHabilesEntreFechas1diaSabadoDomingoLunesYMartesConLunesFestivo() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -153,7 +153,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechas2dias() {
+	public void testContarDiasHabilesEntreFechas2dias() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -167,7 +167,7 @@ public class DatesTest {
 	}
 	
 	@Test
-	public void testContarDíasHabilesEntreFechas2diasFestivos() {
+	public void testContarDiasHabilesEntreFechas2diasFestivos() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -187,7 +187,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechas2diasFinDeSemana() {
+	public void testContarDiasHabilesEntreFechas2diasFinDeSemana() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -201,7 +201,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechasOtrosMeses() {
+	public void testContarDiasHabilesEntreFechasOtrosMeses() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -215,7 +215,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechasError() {
+	public void testContarDiasHabilesEntreFechasError() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		Calendar fecFin = Calendar.getInstance();
@@ -229,7 +229,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechasNulosFecInicio() {
+	public void testContarDiasHabilesEntreFechasNulosFecInicio() {
 
 		Calendar fecInicio = null;
 		Calendar fecFin = Calendar.getInstance();
@@ -242,7 +242,7 @@ public class DatesTest {
 	}
 
 	@Test
-	public void testContarDíasHabilesEntreFechasNulosFecFin() {
+	public void testContarDiasHabilesEntreFechasNulosFecFin() {
 
 		Calendar fecInicio = Calendar.getInstance();
 		;
