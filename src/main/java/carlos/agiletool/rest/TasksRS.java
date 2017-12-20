@@ -26,10 +26,6 @@ public class TasksRS {
 		List<Tarea> tareas = new ArrayList<Tarea>();
 
 		tareas = daoTarea.getAllTasks();
-		
-		// tareas = new ArrayList<Tarea>();
-		Tarea tarea = new Tarea();
-		tareas.add(tarea);
 
 		return tareas;
 	}
