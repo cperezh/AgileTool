@@ -32,7 +32,7 @@ public class Tarea implements Serializable {
 	private static final int horasDia = 8;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre_persona;
 	private String nombre_tarea;
@@ -214,17 +214,19 @@ public class Tarea implements Serializable {
 
 	public void setDias_off(String dias_off) throws ParseException {
 		this.dias_off = dias_off;
-		
+
 		festivos = new ArrayList<Calendar>();
 		Calendar cal = Calendar.getInstance();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-		String[] festivoString = dias_off.split(",");
+		if (dias_off != null) {
+			String[] festivoString = dias_off.split(",");
 
-		for (String fecha : festivoString) {
-			cal = Calendar.getInstance();
-			cal.setTime(sdf.parse(fecha));
-			festivos.add(cal);
+			for (String fecha : festivoString) {
+				cal = Calendar.getInstance();
+				cal.setTime(sdf.parse(fecha));
+				festivos.add(cal);
+			}
 		}
 	}
 
@@ -236,12 +238,19 @@ public class Tarea implements Serializable {
 		this.festivos = festivos;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Tarea [id=" + id + ", nombre_persona=" + nombre_persona + ", nombre_tarea=" + nombre_tarea + ", performance=" + performance + ", horas_tarea=" + horas_tarea + ", fec_inicio="
-//				+ fec_inicio.get(Calendar.DAY_OF_MONTH) + "/" + (fec_inicio.get(Calendar.MONTH) + 1) + "/" + fec_inicio.get(Calendar.YEAR) + ", pendiente_planificado=" + pendiente_planificado
-//				+ ", pendiente_actual=" + pendiente_actual + ", desviacion=" + desviacion + ", fec_fin_planificada=" + fec_fin_planificada + ", fec_fin_actual=" + fec_fin_actual + ", dias_off="
-//				+ dias_off + "]";
-//	}
+	// @Override
+	// public String toString() {
+	// return "Tarea [id=" + id + ", nombre_persona=" + nombre_persona + ",
+	// nombre_tarea=" + nombre_tarea + ", performance=" + performance + ",
+	// horas_tarea=" + horas_tarea + ", fec_inicio="
+	// + fec_inicio.get(Calendar.DAY_OF_MONTH) + "/" +
+	// (fec_inicio.get(Calendar.MONTH) + 1) + "/" +
+	// fec_inicio.get(Calendar.YEAR) + ", pendiente_planificado=" +
+	// pendiente_planificado
+	// + ", pendiente_actual=" + pendiente_actual + ", desviacion=" + desviacion
+	// + ", fec_fin_planificada=" + fec_fin_planificada + ", fec_fin_actual=" +
+	// fec_fin_actual + ", dias_off="
+	// + dias_off + "]";
+	// }
 
 }
